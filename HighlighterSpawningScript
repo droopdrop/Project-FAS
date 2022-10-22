@@ -1,0 +1,10 @@
+UserInputService = game:GetService("UserInputService")
+
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+	if input.KeyCode == Enum.KeyCode.T then
+		if game.Workspace:FindFirstChild("Highlighter") then
+			local Highlighter = workspace.Highlighter
+			game.ReplicatedStorage.Plant:FireServer(Highlighter.Position)
+		end
+	end
+end)
