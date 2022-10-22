@@ -1,0 +1,21 @@
+local nightMusic = workspace.Environment["Sounds/Music"].GuitarNight
+local dayMusic = workspace.Environment["Sounds/Music"].GuitarsDay
+
+local Lighting = game:GetService("Lighting")
+
+local function check()
+	local night = (Lighting.ClockTime <= 6 or Lighting.ClockTime >= 18)
+	
+	if not night and not dayMusic.IsPlaying then
+		nightMusic:Stop()
+		dayMusic:Play()
+		dayMusic.Volume = 0.2
+	elseif night and not nightMusic.IsPlaying then
+		dayMusic:Stop()
+		nightMusic:Play()
+		nightMusic.Volume = 0.2
+	end
+end
+Lighting:GetPropertyChangedSignal("ClockTime"):Connect(check)
+
+check()
