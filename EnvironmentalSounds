@@ -1,0 +1,23 @@
+local crickets = workspace.Environment["Sounds/Music"]["Crickets And Cicadas 3 (SFX)"]
+local birds = workspace.Environment["Sounds/Music"]["Birds-Chirping"]
+local lighting = game:GetService("Lighting")
+
+local function check()
+	local night = (lighting.ClockTime <= 6 or lighting.ClockTime >= 18)
+	
+	if not night and not birds.IsPlaying then
+		crickets:Stop()
+		birds:Play()
+		birds.Volume = 0.3
+		birds.Looped = true
+	elseif night and not crickets.IsPlaying then
+		birds:Stop()
+		crickets:Play()
+		crickets.Volume = 0.3
+		crickets.Looped = true
+	end
+end
+
+
+lighting:GetPropertyChangedSignal("ClockTime"):Connect(check)
+check()
