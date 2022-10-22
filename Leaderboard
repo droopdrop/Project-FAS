@@ -1,0 +1,12 @@
+function onPlayerJoin(player)
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+	
+	local Money = Instance.new("IntValue", leaderstats)
+	Money.Name = "Money"
+	Money.Value = 0
+	
+end
+
+game.Players.PlayerAdded:Connect(onPlayerJoin)
