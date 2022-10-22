@@ -1,0 +1,34 @@
+local Humanoid = script.Parent:FindFirstChild("Humanoid")
+local player_walk = script.Parent.HumanoidRootPart:FindFirstChild("Running")
+local playerArea = game.Workspace.PlayerArea	
+
+while true do
+	wait()
+	
+	if Humanoid then
+		if Humanoid.FloorMaterial == Enum.Material.LeafyGrass then
+			player_walk.SoundId = "rbxassetid://9064714296"
+			player_walk.PlaybackSpeed = 1.2
+			player_walk.Volume = 0.5
+		elseif Humanoid.FloorMaterial == Enum.Material.WoodPlanks then
+			player_walk.SoundId = "rbxassetid://9065052688"
+			player_walk.PlaybackSpeed = 1.2
+			player_walk.Volume = 0.5
+		elseif Humanoid.FloorMaterial == Enum.Material.Limestone then
+			player_walk.SoundId = "rbxassetid://9065069004"
+			player_walk.PlaybackSpeed = 1.2
+			player_walk.Volume = 0.5
+		else
+			
+			
+		end
+		playerArea.Touched:Connect(function()
+			if Humanoid then
+				player_walk.SoundId = "rbxassetid://9064714296"
+				player_walk.PlaybackSpeed = 1.2
+				player_walk.Volume = 0.5
+			end
+		end)	
+		
+	end
+end
