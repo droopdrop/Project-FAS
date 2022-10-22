@@ -1,0 +1,33 @@
+local Player = game.Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+local Seeds = script.Parent
+local mouse = Player:GetMouse()
+
+
+Seeds.Equipped:Connect(function(player)
+	if mouse.Target == game.Workspace.PlayerArea then
+		local Highlighter = game.ReplicatedStorage.Highlighter:Clone()
+		Highlighter.Anchored = true
+		Highlighter.Transparency = 0.5
+		Highlighter.Material = "Neon"	
+		Highlighter.CanCollide = false
+		Highlighter.Parent = game.Workspace
+		
+		while true do
+			local pos = mouse.Hit.Position
+			mouse.TargetFilter = Highlighter
+			Highlighter.Position = pos + Vector3.new(0, 0.5, 0)
+			wait()
+		end
+	end	
+end)
+
+Seeds.Unequipped:Connect(function()
+	local world = game.Workspace
+	if world:FindFirstChild("Highlighter") then
+		local Highlighter = game.Workspace.Highlighter
+		Highlighter:Destroy()
+		Highlighter.CanQuery = true
+	end
+end)
+
