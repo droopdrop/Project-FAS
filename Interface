@@ -1,0 +1,16 @@
+local ShopButton = script.Parent.ShopButton
+local MainFrame = script.Parent.ShopFrame
+local X = script.Parent.ShopFrame.XButton
+
+MainFrame.Visible = false
+
+ShopButton.MouseButton1Click:Connect(function()
+	MainFrame.Visible = true
+end)
+X.MouseButton1Down:Connect(function()
+	MainFrame.Visible = false
+end)
+
+ShopButton.MouseButton2Click:Connect(function()
+	MainFrame.Visible = false
+end)
