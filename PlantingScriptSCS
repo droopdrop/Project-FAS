@@ -1,0 +1,34 @@
+local PlantsSeeds = game.Workspace.PlantsSeeded
+local PlantsS2 = game.Workspace["Plants S2"]
+local PlantsS3 = game.Workspace.PlantsS3
+local Stages = game.ReplicatedStorage.Plants.TomatoPlant
+
+
+game.ReplicatedStorage.Plant.OnServerEvent:Connect(function(Player, Pos)
+
+	local newTomatoPlant = game.ReplicatedStorage.Plants.TomatoPlant.S1:Clone()
+	newTomatoPlant.Parent = workspace.PlantsSeeded
+	newTomatoPlant.CFrame = Pos + Vector3.new(0,0.5,0)
+	newTomatoPlant.Anchored = true
+
+end)
+
+PlantsSeeds.ChildAdded:Connect(function()
+	
+	wait(15)
+	local s2 = Stages.S2:Clone()
+	s2.Parent = PlantsS2
+	s2.CFrame = PlantsSeeds.S1.CFrame + Vector3.new(0,2,0)
+	s2.Anchored = true
+	PlantsSeeds.S1:Destroy()
+	
+end)
+
+PlantsS2.ChildAdded:Connect(function()
+	wait(3)
+	local s3 = Stages.S3:Clone()
+	s3.Parent = PlantsS3
+	s3.CFrame = PlantsS2.S2.CFrame
+	s3.Anchored = true
+	PlantsS2.S2:Destroy()
+end)
