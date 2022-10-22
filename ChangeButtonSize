@@ -1,0 +1,8 @@
+local shopButton = script.Parent
+
+shopButton.MouseEnter:Connect(function()
+	shopButton.ShopButtonSize.MaxSize = Vector2.new(100,100)
+end)
+shopButton.MouseLeave:Connect(function()
+	shopButton.ShopButtonSize.MaxSize = Vector2.new(75,75)
+end)
